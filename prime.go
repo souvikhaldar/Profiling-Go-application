@@ -10,7 +10,6 @@ import (
 
 var cpuProfile = flag.String("cpu", "", "write cpu profile to `file`")
 var memProfile = flag.String("memory", "", "write memory profile to `file`")
-var 
 
 func prime(lim int) []int {
 	primes := make([]int, 0)
@@ -31,7 +30,6 @@ func prime(lim int) []int {
 
 func main() {
 	flag.Parse()
-	prime(100000)
 	if *cpuProfile != "" {
 		f, er := os.Create(*cpuProfile)
 		if er != nil {
@@ -48,6 +46,7 @@ func main() {
 
 	}
 
+	prime(100000)
 
 	if *memProfile != "" {
 		f, er := os.Create(*memProfile)
