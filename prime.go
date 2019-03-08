@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"runtime"
 	"runtime/pprof"
 )
 
@@ -54,7 +53,7 @@ func main() {
 			return
 		}
 		defer f.Close()
-		runtime.GC()
+		//runtime.GC()
 		if e := pprof.WriteHeapProfile(f); e != nil {
 			fmt.Println("Error in writing memory profile: ", e)
 			return
