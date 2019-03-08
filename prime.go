@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime"
 	"runtime/pprof"
 )
 
@@ -44,7 +45,6 @@ func main() {
 		defer pprof.StopCPUProfile()
 
 	}
-	x := prime(100000)
 
 	if *memProfile != "" {
 		f, er := os.Create(*memProfile)
@@ -53,12 +53,12 @@ func main() {
 			return
 		}
 		defer f.Close()
-		//runtime.GC()
+		runtime.GC()
 		if e := pprof.WriteHeapProfile(f); e != nil {
 			fmt.Println("Error in writing memory profile: ", e)
 			return
 		}
 	}
+	prime(100000)
 
-	fmt.Println(x)
 }
