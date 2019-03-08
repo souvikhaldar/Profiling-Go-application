@@ -1,10 +1,15 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-
-	"github.com/pkg/profile"
+	"os"
+	"runtime"
+	"runtime/pprof"
 )
+
+var cpuProfile = flag.String("cpu", "", "write cpu profile to `file`")
+var memProfile = flag.String("memory", "", "write memory profile to `file`")
 
 func prime(lim int) []int {
 	primes := make([]int, 0)
@@ -24,7 +29,37 @@ func prime(lim int) []int {
 }
 
 func main() {
-	defer profile.Start().Stop()
+	flag.Parse()
+	if *cpuProfile != "" {
+		f, er := os.Create(*cpuProfile)
+		if er != nil {
+			fmt.Println("Error in creating file for writing cpu profile: ", er)
+			return
+		}
+		defer f.Close()
+
+		if e := pprof.StartCPUProfile(f); e != nil {
+			fmt.Println("Error in starting CPU profile: ", e)
+			return
+		}
+		defer pprof.StopCPUProfile()
+
+	}
 	x := prime(100000)
+
+	if *memProfile != "" {
+		f, er := os.Create(*memProfile)
+		if er != nil {
+			fmt.Println("Error in creating file for writing memory profile to: ", er)
+			return
+		}
+		defer f.Close()
+		runtime.GC()
+		if e := pprof.WriteHeapProfile(f); e != nil {
+			fmt.Println("Error in writing memory profile: ", e)
+			return
+		}
+	}
+
 	fmt.Println(x)
 }
