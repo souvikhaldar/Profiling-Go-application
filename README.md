@@ -54,11 +54,13 @@ In the `main()`:-
 4. Compile the program using `go install`.
 
 5. Ran the following command to generate the profile :-
+
 For CPU profile => `profiling -cpu <cpu-profile-file>`
 
 For memory profile => `profiling -memory <memory-profile-file>`
 
 6. Now to analyze the generated profile:-
+
 `go tool pprof <profile-file>`
 -------------------------------------------------------------------------------------------------------------------------------------
 
