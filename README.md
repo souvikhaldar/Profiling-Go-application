@@ -11,8 +11,11 @@ Profiling a program can tell you a lot about the memory and CPU usage of differe
 2. Install graphviz [graphviz](https://www.graphviz.org/)
 
 3. Now, I've done profiling for CPU and memory one by one. First I profiled a sample Golang code (prime number calculation) for CPU usage. For that first I added this line of code at the top of the main:
-```var cpuProfile = flag.String("cpu", "", "write cpu profile to file")
-var memProfile = flag.String("memory", "", "write memory profile to file")```
+```
+var cpuProfile = flag.String("cpu", "", "write cpu profile to file")
+var memProfile = flag.String("memory", "", "write memory profile to file")
+```
+
 In the `main()`:-
 ```flag.Parse()
 	if *cpuProfile != "" {
