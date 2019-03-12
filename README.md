@@ -51,10 +51,11 @@ In the `main()`:-
 	}
 ```
 
-4. Compiled the program using `go install`.
+4. Compile the program using `go install`.
 
 5. Ran the following command to generate the profile :-
 For CPU profile => `profiling -cpu <cpu-profile-file>`
+
 For memory profile => `profiling -memory <memory-profile-file>`
 
 6. Now to analyze the generated profile:-
@@ -75,9 +76,13 @@ go func() {
 }()
 ```
 3. Now different profiles will be available at the following endpoints:-
-*http://localhost:6060/debug/pprof/goroutine
-*http://localhost:6060/debug/pprof/heap
-*http://localhost:6060/debug/pprof/threadcreate
-*http://localhost:6060/debug/pprof/block
-*http://localhost:6060/debug/pprof/mutex
+* http://localhost:6060/debug/pprof/goroutine
+
+* http://localhost:6060/debug/pprof/heap
+
+* http://localhost:6060/debug/pprof/threadcreate
+
+* http://localhost:6060/debug/pprof/block
+
+* http://localhost:6060/debug/pprof/mutex
 
