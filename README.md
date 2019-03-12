@@ -18,7 +18,6 @@ var memProfile = flag.String("memory", "", "write memory profile to file")
 
 In the `main()`:-
 ```
-flag.Parse()
 	if *cpuProfile != "" {
 		f, er := os.Create(*cpuProfile)
 		if er != nil {
@@ -50,8 +49,7 @@ flag.Parse()
 			return
 		}
 	}
-	
-	```
+```
 
 4. Compiled the program using `go install`.
 
